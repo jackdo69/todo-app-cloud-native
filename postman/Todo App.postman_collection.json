@@ -7,6 +7,75 @@
 	},
 	"item": [
 		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"const clientId = pm.environment.get(\"cognitoClientId\");",
+							"const username = pm.environment.get(\"cognitoUserName\");",
+							"const password = pm.environment.get(\"cognitoUserPassword\");",
+							"",
+							"const body = {",
+							"    \"AuthParameters\": {",
+							"        \"USERNAME\": username,",
+							"        \"PASSWORD\": password",
+							"    },",
+							"    \"AuthFlow\": \"USER_PASSWORD_AUTH\",",
+							"    \"ClientId\": clientId",
+							"}",
+							"pm.environment.set(\"requestBody\", JSON.stringify(body));"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"cognitoIdToken\", pm.response.json().AuthenticationResult.IdToken);",
+							"pm.environment.set(\"cognitoAccessToken\", pm.response.json().AuthenticationResult.AccessToken);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Amz-Target",
+						"value": "AWSCognitoIdentityProviderService.InitiateAuth",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/x-amz-json-1.1",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{{requestBody}}"
+				},
+				"url": {
+					"raw": "https://cognito-idp.ap-southeast-2.amazonaws.com/",
+					"protocol": "https",
+					"host": [
+						"cognito-idp",
+						"ap-southeast-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Health",
 			"request": {
 				"method": "GET",
@@ -22,6 +91,36 @@
 				}
 			},
 			"response": []
+		}
+	],
+	"auth": {
+		"type": "oauth2",
+		"oauth2": [
+			{
+				"key": "addTokenTo",
+				"value": "header",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
 		}
 	]
 }
