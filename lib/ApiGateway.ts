@@ -9,10 +9,10 @@ export class ApiGateway extends RestApi {
     private _authorizer: CognitoUserPoolsAuthorizer;
     constructor(scope: Construct) {
         super(scope, "ApiGateway", {
-            restApiName: 'todo-app',
+            restApiName: 'to-do_api-gateway',
             deployOptions: {
                 accessLogDestination: new LogGroupLogDestination(new LogGroup(scope, "ApiLogGroup", {
-                    logGroupName: "api_gateway",
+                    logGroupName: "to-do_api-gateway_log-group",
                     retention: RetentionDays.ONE_DAY,
                     removalPolicy: RemovalPolicy.DESTROY
                 }))

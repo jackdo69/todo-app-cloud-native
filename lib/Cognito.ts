@@ -8,7 +8,7 @@ export class Cognito {
     private _authorizer: CognitoUserPoolsAuthorizer;
     constructor(scope: Construct) {
         this._userPool = new UserPool(scope, "UserPool", {
-            userPoolName: "todo-app",
+            userPoolName: "to-do_user-pool",
             removalPolicy: RemovalPolicy.DESTROY,
             selfSignUpEnabled: true,
             signInAliases: {email: true},
@@ -29,7 +29,7 @@ export class Cognito {
         });
 
         this._authorizer = new CognitoUserPoolsAuthorizer(scope, "UserPoolAuthorizer", {
-        authorizerName: "user-pool-authorizer",
+        authorizerName: "to-do_user-pool_authorizer",
         cognitoUserPools: [this._userPool]
         })
     }
