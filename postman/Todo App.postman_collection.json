@@ -91,6 +91,106 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Create Todo",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"content\": \"Walk the dog\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/todo",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"todo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Todo",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/todo",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"todo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Todo",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"status\": \"IN_PROGRESS\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/todo/149950c7-88fd-4183-a8a0-da57307a5136",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"todo",
+						"149950c7-88fd-4183-a8a0-da57307a5136"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Todo",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/todo/2223ba73-d4c4-4d27-a401-d8d6d0af51cf",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"todo",
+						"2223ba73-d4c4-4d27-a401-d8d6d0af51cf"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"auth": {
